@@ -13,6 +13,7 @@
 </head>
 
 <body>
+
   <!-- navbar -->
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <a class="navbar-brand" href="index.html"><i class="fas fa-users mx-2"></i>Someone</a>
@@ -24,15 +25,18 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="index.html">Home<i class="fas fa-home ml-1"></i><span
+              class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">My Favorite<span style="color: Tomato;"><i
+                class="fas fa-heart ml-1"></i></span><span class="sr-only">(current)</span></a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+
     </div>
   </nav>
+
   <!-- carousel -->
   <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -45,21 +49,21 @@
         <img src="photo/carousel-1.jpg" class="d-block w-100" alt="carousel-1">
         <div class="carousel-caption d-block">
           <h1>Find Your Partner</h1>
-          <p>Scroll down find more friends!</p>
+          <p>Scroll down to find more friends!</p>
         </div>
       </div>
       <div class="carousel-item" data-interval="15000" style="max-height: 400px;">
         <img src="photo/carousel-2.jpg" class="d-block w-100" alt="carousel-2">
         <div class="carousel-caption d-block">
           <h1>Not Lonely Anymore</h1>
-          <p>Scroll down find more friends!</p>
+          <p>Scroll down to find more friends!</p>
         </div>
       </div>
       <div class="carousel-item" data-interval="15000" style="max-height: 400px;">
         <img src="photo/carousel-3.jpg" class="d-block w-100" alt="carousel-3">
         <div class="carousel-caption d-block">
           <h1>Someone who cares about you</h1>
-          <p>Scroll down find more friends!</p>
+          <p>Scroll down to find more friends!</p>
         </div>
       </div>
     </div>
@@ -72,6 +76,7 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+
   <!-- main -->
   <div class="container mt-2">
     <div class="btn-group mb-2" id="gender-filter" role="group" aria-label="Basic example">
@@ -79,8 +84,9 @@
       <button type="button" class="btn btn-secondary" data-gender="male">Male</button>
       <button type="button" class="btn btn-secondary" data-gender="female">Female</button>
     </div>
+
+    <!-- user info -->
     <div class="row users">
-      <!-- user info -->
     </div>
 
     <!-- pagination -->
