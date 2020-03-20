@@ -13,6 +13,8 @@
   const genderFilter = document.querySelector('#gender-filter')
   const USER_PER_PAGE = 12
   let pageNum = 1
+  let paginationFirstNum = 1
+  let paginationLastNum = 5
   let genderStatus = 'all'
 
   //渲染頁面架構
@@ -23,7 +25,7 @@
       console.log(userData);
       maleData = userData.filter(user => user.gender === 'male')
       femaleData = userData.filter(user => user.gender === 'female')
-      getTotalPage(userData)
+      getTotalPage(paginationFirstNum, paginationLastNum)
       getPageData(pageNum, userData)
 
     })
@@ -45,8 +47,43 @@
 
   //頁碼切換事件監聽
   pagination.addEventListener('click', () => {
-    // console.log(event.target.dataset.page)
-    if (event.target.tagName === 'A') {
+    if (event.target.matches('#Previous')) {
+      // Pagination減
+      if (genderStatus === 'male') {
+        let maxPages = Math.ceil(maleData.length / USER_PER_PAGE)
+        let maxPageNum = maxPages - 4
+        console.log({ maxPages, maxPageNum })
+        pagePrevious()
+      } else if (genderStatus === 'female') {
+        let maxPages = Math.ceil(femaleData.length / USER_PER_PAGE)
+        let maxPageNum = maxPages - 4
+        console.log({ maxPages, maxPageNum })
+        pagePrevious()
+      } else {
+        let maxPages = Math.ceil(userData.length / USER_PER_PAGE)
+        let maxPageNum = maxPages - 4
+        console.log({ maxPages, maxPageNum })
+        pagePrevious()
+      }
+    } else if (event.target.matches('#Next')) {
+      // Pagination加
+      if (genderStatus === 'male') {
+        let maxPages = Math.ceil(maleData.length / USER_PER_PAGE)
+        let maxPageNum = maxPages - 4
+        console.log({ maxPages, maxPageNum })
+        pageNext(maxPageNum)
+      } else if (genderStatus === 'female') {
+        let maxPages = Math.ceil(femaleData.length / USER_PER_PAGE)
+        let maxPageNum = maxPages - 4
+        console.log({ maxPages, maxPageNum })
+        pageNext(maxPageNum)
+      } else {
+        let maxPages = Math.ceil(userData.length / USER_PER_PAGE)
+        let maxPageNum = maxPages - 4
+        console.log({ maxPages, maxPageNum })
+        pageNext(maxPageNum)
+      }
+    } else if (event.target.tagName === 'A') {
       pageNum = event.target.dataset.page
       if (genderStatus === 'male') {
         getPageData(pageNum, maleData)
@@ -55,7 +92,6 @@
       } else {
         getPageData(pageNum, userData)
       }
-
     }
   })
 
@@ -64,17 +100,23 @@
     if (event.target.dataset.gender === 'male') {
       genderStatus = event.target.dataset.gender
       pageNum = 1
-      getTotalPage(maleData)
+      paginationFirstNum = 1
+      paginationLastNum = 5
+      getTotalPage(paginationFirstNum, paginationLastNum)
       getPageData(pageNum, maleData)
     } else if (event.target.dataset.gender === 'female') {
       genderStatus = event.target.dataset.gender
       pageNum = 1
-      getTotalPage(femaleData)
+      paginationFirstNum = 1
+      paginationLastNum = 5
+      getTotalPage(paginationFirstNum, paginationLastNum)
       getPageData(pageNum, femaleData)
     } else {
       genderStatus = event.target.dataset.gender
       pageNum = 1
-      getTotalPage(userData)
+      paginationFirstNum = 1
+      paginationLastNum = 5
+      getTotalPage(paginationFirstNum, paginationLastNum)
       getPageData(pageNum, userData)
     }
   })
@@ -119,18 +161,28 @@
   }
 
   //產生Pagination頁碼
-  function getTotalPage(userData) {
-    let totalPages = Math.ceil(userData.length / USER_PER_PAGE)
-    // console.log(totalPages)
+  function getTotalPage(paginationFirstNum, paginationLastNum) {
     let htmlContent = ''
-    for (let i = 0; i < totalPages; i++) {
+    htmlContent += `
+    <li class="page-item">
+      <a class="page-link" id="Previous" href="javascript:;" aria-label="Previous">
+        <span id="Previous" aria-hidden="true">&laquo;</span>
+      </a>
+    </li>`
+    for (let i = paginationFirstNum; i <= paginationLastNum; i++) {
       htmlContent += `
-        <li class="page-item"><a class="page-link" href="javascript:;" data-page="${i + 1}">${i + 1}</a></li>
-      `
+      <li class="page-item"><a class="page-link" data-page="${i}" href="JavaScript:;">${i}</a></li>
+    `
     }
+    htmlContent += `
+    <li class="page-item">
+      <a class="page-link" id="Next" href="javascript:;" aria-label="Next">
+        <span id="Next" aria-hidden="true">&raquo;</span>
+      </a>
+    </li>`
     pagination.innerHTML = htmlContent
   }
-
+  // 獲取當前頁面使用者Card
   function getPageData(pageNum, userData) {
     paginationData = userData
     // console.log(paginationData)
@@ -139,4 +191,25 @@
     // console.log(pageData)
     renderUsers(pageData)
   }
+
+  function pagePrevious() {
+    if (paginationFirstNum === 1) {
+      return
+    } else {
+      paginationFirstNum--
+      paginationLastNum--
+      getTotalPage(paginationFirstNum, paginationLastNum)
+    }
+  }
+
+  function pageNext(maxPageNum) {
+    if (paginationFirstNum === maxPageNum) {
+      return
+    } else {
+      paginationFirstNum++
+      paginationLastNum++
+      getTotalPage(paginationFirstNum, paginationLastNum)
+    }
+  }
+
 })();
