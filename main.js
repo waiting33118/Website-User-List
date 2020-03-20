@@ -52,17 +52,14 @@
       if (genderStatus === 'male') {
         let maxPages = Math.ceil(maleData.length / USER_PER_PAGE)
         let maxPageNum = maxPages - 4
-        console.log({ maxPages, maxPageNum })
         pagePrevious()
       } else if (genderStatus === 'female') {
         let maxPages = Math.ceil(femaleData.length / USER_PER_PAGE)
         let maxPageNum = maxPages - 4
-        console.log({ maxPages, maxPageNum })
         pagePrevious()
       } else {
         let maxPages = Math.ceil(userData.length / USER_PER_PAGE)
         let maxPageNum = maxPages - 4
-        console.log({ maxPages, maxPageNum })
         pagePrevious()
       }
     } else if (event.target.matches('#Next')) {
@@ -70,17 +67,14 @@
       if (genderStatus === 'male') {
         let maxPages = Math.ceil(maleData.length / USER_PER_PAGE)
         let maxPageNum = maxPages - 4
-        console.log({ maxPages, maxPageNum })
         pageNext(maxPageNum)
       } else if (genderStatus === 'female') {
         let maxPages = Math.ceil(femaleData.length / USER_PER_PAGE)
         let maxPageNum = maxPages - 4
-        console.log({ maxPages, maxPageNum })
         pageNext(maxPageNum)
       } else {
         let maxPages = Math.ceil(userData.length / USER_PER_PAGE)
         let maxPageNum = maxPages - 4
-        console.log({ maxPages, maxPageNum })
         pageNext(maxPageNum)
       }
     } else if (event.target.tagName === 'A') {
