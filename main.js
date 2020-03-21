@@ -42,6 +42,8 @@
       console.log(event.target.dataset.id);
       const userId = event.target.dataset.id;
       showSingleUser(userId);
+    } else if (event.target.matches("#like")) {
+      addFavoriteItem(event.target.dataset.id)
     }
   });
 
@@ -125,7 +127,7 @@
       <div class="hovereffect">
         <img class="card-img-top user-avatar" src="${user.avatar}" data-id="${user.id}" data-toggle="modal" data-target="#exampleModalCenter">
         <div class="card-body text-primary">
-          <p class="card-text text-center text-wrap font-weight-bolder" style="font-size:16px;">${user.name} ${user.surname}<span style="color: red;"><i class="far fa-heart ml-1" id="like"></i></span></p>
+          <p class="card-text text-center text-wrap font-weight-bolder" style="font-size:16px;">${user.name} ${user.surname}<span style="color: red;"><i class="fas fa-heart ml-1" id="like" data-id="${user.id}"></i></span></p>
         </div>
         </div>
     </div>
@@ -208,4 +210,17 @@
     }
   }
 
+  //收藏使用者
+  function addFavoriteItem(id) {
+    // console.log(id)
+    const list = JSON.parse(localStorage.getItem('favoriteUsers')) || []
+    const user = userData.find(user => user.id === Number(id))
+    if (list.some(user => user.id === Number(id))) {
+      alert(`${user.name} ${user.surname} 已是你的最愛`)
+    } else {
+      list.push(user)
+      alert(`已將 ${user.name} ${user.surname} 加入至我的最愛!!`)
+    }
+    localStorage.setItem('favoriteUsers', JSON.stringify(list))
+  }
 })();
