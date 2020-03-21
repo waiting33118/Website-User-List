@@ -125,7 +125,7 @@
       <div class="hovereffect">
         <img class="card-img-top user-avatar" src="${user.avatar}" data-id="${user.id}" data-toggle="modal" data-target="#exampleModalCenter">
         <div class="card-body text-primary">
-          <p class="card-text text-center text-wrap font-weight-bolder" style="font-size:16px;">${user.name} ${user.surname}</p>
+          <p class="card-text text-center text-wrap font-weight-bolder" style="font-size:16px;">${user.name} ${user.surname}<span style="color: red;"><i class="far fa-heart ml-1" id="like"></i></span></p>
         </div>
         </div>
     </div>
@@ -186,6 +186,7 @@
     renderUsers(pageData)
   }
 
+  //頁籤<<
   function pagePrevious() {
     if (paginationFirstNum === 1) {
       return
@@ -196,6 +197,7 @@
     }
   }
 
+  //頁籤>>
   function pageNext(maxPageNum) {
     if (paginationFirstNum === maxPageNum) {
       return
