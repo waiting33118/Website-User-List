@@ -144,10 +144,10 @@
         userName.innerHTML = `${res.data.name} ${res.data.surname}`;
         userAvatar.src = res.data.avatar;
         userInfo.innerHTML = `
-          <div id="user-age" >Age:${res.data.age} </div >
-          <div id="user-region">Region:${res.data.region} </div>
-          <div id="user-birth">Birthday:${res.data.birthday} </div>
-          <div id="user-email">Email:${res.data.email} </div>
+          <div id="user-age"><i class="fas fa-user-circle mr-3"></i>${res.data.age} years old</div>
+          <div id="user-region"><i class="fas fa-flag mr-3"></i>${res.data.region}</div>
+          <div id="user-birth"><i class="fas fa-baby mr-3"></i>${res.data.birthday}</div>
+          <div id="user-email"><i class="fas fa-envelope mr-3"></i>${res.data.email}</div>
           <br><small id="created" class="text-muted">Created:${res.data.created_at}</small>
         `;
       })
