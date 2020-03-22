@@ -22,6 +22,8 @@
   cursor: pointer;
 }
 
-#like {
+#like,#delete {
   cursor: pointer;
 }
+
+
